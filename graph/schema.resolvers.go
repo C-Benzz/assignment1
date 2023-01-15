@@ -13,27 +13,56 @@ import (
 
 // CreateTodo is the resolver for the CreateTodo field.
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - CreateTodo"))
+	if input.ID != nil {
+		return nil, fmt.Errorf("id must be null")
+	}
+	newTodo := model.Todo{
+		Title: input.Title,
+	}
+	error := r.DB.AddNewTodo(&newTodo)
+	if error != nil {
+		return nil, error
+	}
+	return &newTodo, nil
 }
 
 // UpdateTodo is the resolver for the UpdateTodo field.
 func (r *mutationResolver) UpdateTodo(ctx context.Context, id string, input *model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: UpdateTodo - UpdateTodo"))
+	if input.ID == nil {
+		return nil, fmt.Errorf("id must not be null")
+	}
+	// check existense
+	_, error := r.DB.GetTodoByID(*input.ID)
+	if error != nil {
+		return nil, error
+	}
+
+	Todo := model.Todo{ID: *input.ID, Title: input.Title}
+	error = r.DB.UpdateTodoByID(Todo)
+	if error != nil {
+		return nil, error
+	}
+
+	return &Todo, nil
 }
 
 // DeleteTodo is the resolver for the DeleteTodo field.
 func (r *mutationResolver) DeleteTodo(ctx context.Context, id string) (bool, error) {
-	panic(fmt.Errorf("not implemented: DeleteTodo - DeleteTodo"))
+	error := r.DB.DeleteTodoByID(id)
+	if error != nil {
+		return false, error
+	}
+	return true, nil
 }
 
 // GetAllList is the resolver for the GetAllList field.
 func (r *queryResolver) GetAllList(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: GetAllList - GetAllList"))
+	return r.DB.ListAllTodo(), nil
 }
 
 // GetTodoByID is the resolver for the GetTodoByID field.
 func (r *queryResolver) GetTodoByID(ctx context.Context, id string) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: GetTodoByID - GetTodoByID"))
+	return r.DB.GetTodoByID(id)
 }
 
 // Mutation returns MutationResolver implementation.
