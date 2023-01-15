@@ -43,5 +43,6 @@ input NewTodo {
  
 type Mutation {
   CreateTodo(input: NewTodo!): Todo!
-  UpdateTodo(PostId: Int!, input: NewTodo): Todo!
+  UpdateTodo(id: Int!, input: NewTodo): Todo!
+  DeleteTodo(id: Int!): Todo!
 }

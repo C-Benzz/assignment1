@@ -17,8 +17,13 @@ func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) 
 }
 
 // UpdateTodo is the resolver for the UpdateTodo field.
-func (r *mutationResolver) UpdateTodo(ctx context.Context, postID int, input *model.NewTodo) (*model.Todo, error) {
+func (r *mutationResolver) UpdateTodo(ctx context.Context, id int, input *model.NewTodo) (*model.Todo, error) {
 	panic(fmt.Errorf("not implemented: UpdateTodo - UpdateTodo"))
+}
+
+// DeleteTodo is the resolver for the DeleteTodo field.
+func (r *mutationResolver) DeleteTodo(ctx context.Context, id int) (*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: DeleteTodo - DeleteTodo"))
 }
 
 // GetAllList is the resolver for the GetAllList field.
