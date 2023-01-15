@@ -27,7 +27,7 @@ func (r *mutationResolver) DeleteTodo(ctx context.Context, id string) (bool, err
 }
 
 // GetAllList is the resolver for the GetAllList field.
-func (r *queryResolver) GetAllList(ctx context.Context) (*model.Todo, error) {
+func (r *queryResolver) GetAllList(ctx context.Context) ([]*model.Todo, error) {
 	panic(fmt.Errorf("not implemented: GetAllList - GetAllList"))
 }
 

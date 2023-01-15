@@ -32,7 +32,7 @@ type Todo {
 }
  
 type Query {
-  GetAllList: Todo
+  GetAllList: [Todo!]!
   GetTodoByID(id: ID!): Todo
 }
  
