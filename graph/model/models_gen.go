@@ -3,11 +3,11 @@
 package model
 
 type NewTodo struct {
-	ID    int    `json:"id"`
+	ID    string `json:"id"`
 	Title string `json:"title"`
 }
 
 type Todo struct {
-	ID    int    `json:"id"`
+	ID    string `json:"id"`
 	Title string `json:"title"`
 }

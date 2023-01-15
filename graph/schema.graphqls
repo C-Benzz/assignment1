@@ -27,22 +27,22 @@
 #   createTodo(input: NewTodo!): Todo!
 # }
 type Todo {
- id: Int!
+ id: ID!
  title: String!
 }
  
 type Query {
-  GetAllList: [Todo!]!
-  GetTodoByID(id: Int!): Todo!
+  GetAllList: Todo
+  GetTodoByID(id: ID!): Todo
 }
  
 input NewTodo {
-  id: Int!
+  id: ID!
   title: String!
 }
  
 type Mutation {
-  CreateTodo(input: NewTodo!): Todo!
-  UpdateTodo(id: Int!, input: NewTodo): Todo!
-  DeleteTodo(id: Int!): Todo!
+  CreateTodo(input: NewTodo!): Todo
+  UpdateTodo(id: ID!, input: NewTodo): Todo
+  DeleteTodo(id: ID!): Boolean!
 }
