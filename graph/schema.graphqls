@@ -43,6 +43,6 @@ input NewTodo {
  
 type Mutation {
   CreateTodo(input: NewTodo!): Todo
-  UpdateTodo(id: ID!, input: NewTodo): Todo
+  UpdateTodo(input: NewTodo!): Todo
   DeleteTodo(id: ID!): Boolean!
 }
